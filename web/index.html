@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Memoria | ISW-612</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/ejemplo.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Monitor de Memoria y Procesos Sospechosos</h1>
+        <p>Proyecto ISW-612 | Universidad Técnica Nacional</p>
+    </header>
+
+    <main>
+
+        <section id="inicio">
+            <h2>¿Qué hace esta herramienta?</h2>
+
+            <p>
+                Esta aplicación permite analizar el consumo de memoria
+                de los procesos de Windows, identificar posibles
+                comportamientos anormales y consultar el estado
+                de algunas protecciones de seguridad.
+            </p>
+
+            <h3>¿Cómo utilizarla?</h3>
+
+            <ol>
+                <li>
+                    <strong>1. Cargar datos:</strong>
+                    selecciona un archivo JSON generado por PowerShell
+                    o utiliza los datos de ejemplo.
+                </li>
+
+                <li>
+                    <strong>2. Analizar resultados:</strong>
+                    revisa el resumen, los gráficos, los procesos
+                    y las alertas detectadas.
+                </li>
+
+                <li>
+                    <strong>3. Exportar:</strong>
+                    descarga el JSON o guarda el reporte como PDF.
+                </li>
+            </ol>
+
+            <p>
+                Los datos se procesan localmente en tu navegador.
+                No se envían a servidores externos.
+            </p>
+        </section>
+
+        <section id="carga">
+            <h2>1. Cargar datos del monitoreo</h2>
+
+            <label for="archivoJSON">
+                Selecciona un archivo JSON:
+            </label>
+
+            <input
+                type="file"
+                id="archivoJSON"
+                accept=".json,application/json"
+            >
+
+            <button id="btnEjemplo" type="button">
+                Cargar datos de ejemplo
+            </button>
+
+            <p id="mensaje" role="status" aria-live="polite">
+                Todavía no se ha cargado ningún archivo.
+            </p>
+        </section>
+
+        <section id="resumen">
+            <h2>2. Resumen del análisis</h2>
+
+            <div id="datosGenerales">
+                <p>Carga un archivo para ver el resumen.</p>
+            </div>
+        </section>
+
+        <section id="grafico">
+            <h2>3. Consumo de memoria</h2>
+
+            <p>
+                Aquí se mostrará cómo cambia el consumo de memoria
+                de los procesos durante el monitoreo.
+            </p>
+
+            <label for="seleccionarProceso">
+                Proceso que deseas analizar:
+            </label>
+
+            <select id="seleccionarProceso">
+                <option value="principales">
+                    Mostrar los 5 principales
+                </option>
+            </select>
+
+            <div id="contenedorGrafico"></div>
+        </section>
+
+        <section id="detalleProcesos">
+            <h2>4. Detalle de procesos monitoreados</h2>
+
+            <p>
+                Consulta los procesos registrados, su consumo de memoria
+                y busca uno específico por nombre o PID.
+            </p>
+
+            <label for="buscarProceso">
+                Buscar proceso:
+            </label>
+
+            <input
+                type="search"
+                id="buscarProceso"
+                placeholder="Ejemplo: powershell o 19272"
+            >
+
+            <div id="tablaProcesos">
+                <p>
+                    Carga un archivo JSON para consultar los procesos.
+                </p>
+            </div>
+        </section>
+
+        <section id="alertas">
+            <h2>5. Alertas de seguridad</h2>
+
+            <p>
+                Consulta las alertas registradas por el monitor
+                y ajusta el porcentaje para identificar
+                crecimientos adicionales de memoria.
+            </p>
+
+            <label for="umbral">
+                Umbral de crecimiento (%):
+            </label>
+
+            <input
+                type="number"
+                id="umbral"
+                min="1"
+                max="1000"
+                value="50"
+            >
+
+            <div id="listaAlertas">
+                <p>
+                    Las alertas aparecerán después de cargar los datos.
+                </p>
+            </div>
+        </section>
+
+        <section id="protecciones">
+            <h2>6. Protecciones de Windows</h2>
+
+            <div id="estadoProtecciones">
+                <p>
+                    Aquí se mostrará el estado de LSA Protection
+                    y Credential Guard.
+                </p>
+            </div>
+        </section>
+
+        <section id="exportacion">
+            <h2>7. Exportar resultados</h2>
+
+            <p>
+                Puedes descargar los datos analizados en formato JSON
+                o imprimir el reporte y guardarlo como PDF.
+            </p>
+
+            <button id="btnExportar" type="button" disabled>
+                Descargar JSON
+            </button>
+
+            <button id="btnImprimir" type="button" disabled>
+                Imprimir reporte / Guardar como PDF
+            </button>
+        </section>
+
+        <section id="acercaDe">
+            <h2>8. Acerca del proyecto</h2>
+
+            <h3>¿Qué hace esta aplicación?</h3>
+
+            <p>
+                Esta aplicación permite analizar registros de memoria
+                y procesos de Windows recopilados mediante PowerShell.
+                Su objetivo es identificar comportamientos que requieren
+                revisión, como aumentos sostenidos de memoria.
+            </p>
+
+            <h3>¿Cómo funciona?</h3>
+
+            <p>
+                Primero se ejecuta el monitor de PowerShell
+                en un entorno de pruebas autorizado.
+                El monitor genera un archivo JSON con las mediciones.
+            </p>
+
+            <p>
+                Después, la aplicación web permite cargar ese archivo,
+                consultar gráficos, revisar alertas, buscar procesos
+                y exportar los resultados.
+            </p>
+
+            <h3>Herramientas utilizadas</h3>
+
+            <p>
+                Se utilizan PowerShell, HTML, CSS y JavaScript.
+                El análisis web se realiza localmente en el navegador,
+                sin necesidad de un servidor.
+            </p>
+
+            <h3>Interpretación de resultados</h3>
+
+            <p>
+                Las alertas indican comportamientos que requieren
+                revisión. El umbral configurable de la aplicación
+                permite identificar procesos cuya memoria privada
+                aumentó entre la primera y la última medición.
+            </p>
+
+            <p>
+                Esta comparación es adicional a las alertas originales
+                generadas por PowerShell y no equivale necesariamente
+                a detectar un crecimiento sostenido.
+            </p>
+
+            <h3>Limitaciones</h3>
+
+            <p>
+                Un aumento de memoria no demuestra por sí solo
+                la presencia de malware.
+                Las alertas deben interpretarse considerando
+                el comportamiento normal del equipo.
+            </p>
+
+            <p>
+                El estado de LSA Protection y Credential Guard
+                corresponde al momento en que se recopilaron
+                los datos y no representa una evaluación
+                completa de seguridad.
+            </p>
+
+            <h3>Fuentes de consulta</h3>
+
+            <p>
+                Para comprender los procesos, el monitoreo
+                y las protecciones de Windows, se puede consultar
+                la documentación oficial de Microsoft.
+            </p>
+
+            <p>
+                <a
+                    href="https://learn.microsoft.com/es-es/powershell/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Documentación oficial de PowerShell
+                </a>
+            </p>
+
+            <p>
+                <a
+                    href="https://learn.microsoft.com/es-es/windows/security/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Documentación de seguridad de Windows
+                </a>
+            </p>
+        </section>
+
+    </main>
+
+   <footer>
+    <p><strong>Proyecto ISW-612</strong></p>
+    <p>Monitor de Memoria y Procesos Sospechosos</p>
+
+    <p>Integrantes:</p>
+    <p>Angélica Varela Vargas</p>
+    <p>Isabel Martínez Vindas</p>
+
+    <p>Universidad Técnica Nacional | 2026</p>
+</footer>
+
+</body>
+</html>

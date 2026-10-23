@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "equipo":  "DESKTOP-OE3AICA",
+                 "equipo":  "PC-DEMO",
                  "fecha":  "2026-10-18T15:10:56",
                  "os":  "Microsoft Windows 11 Pro",
                  "duracion_s":  120,
@@ -28672,7 +28672,7 @@
                         "regla":  "crecimiento_sostenido",
                         "proceso":  "powershell",
                         "pid":  19272,
-                        "detalle":  "Memoria privada subiÃ³ de 62.4 MB a 162.4 MB (+160%) en 6 muestras"
+                        "detalle":  "Memoria privada subió de 62.4 MB a 162.4 MB (+160%) en 6 muestras"
                     }
                 ],
     "protecciones":  {

@@ -25,7 +25,7 @@ param(
     [int]$VentanaMuestras = 6,        # ... de forma sostenida durante N muestras
     [double]$MinCrecimientoMB = 20,   # ignora crecimientos pequeños (ruido)
     [double]$MinPrivadoMB = 5,        # no registra procesos con menos memoria que esto
-    [string]$Salida = (Join-Path $PSScriptRoot "..\datos\ejemplo.json")
+    [string]$Salida = (Join-Path $PSScriptRoot "..\Datos\ejemplo.json")
 )
 
 $ErrorActionPreference = "Stop"

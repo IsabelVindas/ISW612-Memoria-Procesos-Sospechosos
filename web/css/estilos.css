@@ -1,0 +1,220 @@
+
+/* ISW-612 - Monitor de Memoria y Procesos Sospechosos */
+
+:root {
+    --principal: #152238;
+    --secundario: #243b55;
+    --azul: #2563eb;
+    --fondo: #f3f6fb;
+    --blanco: #ffffff;
+    --texto: #263445;
+    --borde: #dce4ee;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(120deg, var(--principal), var(--secundario));
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 28px;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+main {
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+section {
+    background: var(--blanco);
+    padding: 25px;
+    margin-bottom: 22px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+h2 {
+    color: var(--principal);
+    margin-top: 0;
+    font-size: 21px;
+}
+
+button {
+    background: var(--azul);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin: 8px 8px 8px 0;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+input[type="file"],
+input[type="number"] {
+    display: block;
+    margin: 12px 0;
+    padding: 10px;
+    max-width: 100%;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+}
+
+#mensaje {
+    padding: 10px;
+    background: #eef4ff;
+    border-radius: 6px;
+}
+
+#datosGenerales,
+#contenedorGrafico,
+#listaAlertas,
+#estadoProtecciones {
+    margin-top: 15px;
+}
+
+.tarjeta {
+    padding: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: #f9fbff;
+    margin-bottom: 12px;
+}
+
+.alerta {
+    padding: 15px;
+    border-left: 5px solid #dc2626;
+    background: #fff1f2;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+.correcto {
+    padding: 15px;
+    border-left: 5px solid #16a34a;
+    background: #f0fdf4;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+.advertencia {
+    padding: 15px;
+    border-left: 5px solid #eab308;
+    background: #fefce8;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+footer {
+    text-align: center;
+    background: var(--principal);
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    button,
+    input[type="file"],
+    input[type="number"] {
+        display: none;
+    }
+
+    section {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+}
+
+
+/* Tabla de procesos */
+
+#buscarProceso {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 12px 0 20px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+#tablaProcesos {
+    overflow-x: auto;
+}
+
+.tabla-procesos {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.tabla-procesos th,
+.tabla-procesos td {
+    padding: 12px;
+    border-bottom: 1px solid var(--borde);
+    text-align: left;
+}
+
+.tabla-procesos th {
+    background: var(--principal);
+    color: white;
+}
+
+.tabla-procesos tr:hover {
+    background: #eef4ff;
+}
+
+.proceso-alerta {
+    background: #fff1f2;
+}
